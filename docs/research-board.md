@@ -529,6 +529,7 @@ Primary Accent: #D84040
 Deep Red: #8E1616
 Dark Base: #1D1616
 Light Text: #EEEEEE
+```
 
 ## Typography direction:
 
@@ -616,7 +617,3 @@ What Flammin Should Steal:
 What Flammin Should Avoid:
 
 ###########################
-
-
-
-```
