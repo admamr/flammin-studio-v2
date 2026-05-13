@@ -18,6 +18,7 @@ Always think and work in this order:
 2. Structure
 3. Design direction
 4. Build
+5. QA
 
 Do not jump into code before the strategic direction, component system, hierarchy, and conversion logic are clear.
 
@@ -33,6 +34,105 @@ Before major implementation, plan:
 6. Responsive behavior
 7. Motion behavior
 8. SEO, GEO, AEO, and analytics impact
+9. QA checks
+
+## Required Project Skills
+
+Before building, editing, or polishing any UI, Claude must read and apply the relevant skill files from:
+
+```txt
+/Users/adamamar/Desktop/flammin-studio-v2/skills/frontend-ui/
+/Users/adamamar/Desktop/flammin-studio-v2/skills/website-cro/
+/Users/adamamar/Desktop/flammin-studio-v2/skills/seo-geo-aeo/
+/Users/adamamar/Desktop/flammin-studio-v2/skills/design-qa/
+/Users/adamamar/Desktop/flammin-studio-v2/skills/motion-gsap/
+```
+
+Use the skills based on task type.
+
+### frontend-ui
+
+Use for:
+
+, layout  
+, sections  
+, components  
+, header  
+, hero  
+, cards  
+, selected work  
+, forms  
+, footer  
+, responsive fixes  
+, semantic HTML  
+, accessibility  
+, clean implementation
+
+Frontend UI must control structure, spacing, responsiveness, maintainability, accessibility, and production quality.
+
+### website-cro
+
+Use for:
+
+, conversion strategy  
+, CTA hierarchy  
+, offer structure  
+, page flow  
+, lead generation logic  
+, friction reduction  
+, audit CTA  
+, trust building sections  
+, homepage conversion path
+
+Website CRO must control whether every section supports business intent.
+
+### seo-geo-aeo
+
+Use for:
+
+, page titles  
+, meta descriptions  
+, canonical URL  
+, Open Graph  
+, schema  
+, FAQ structure  
+, heading hierarchy  
+, crawlable service language  
+, GEO and AEO clarity  
+, AI search readability
+
+SEO, GEO, and AEO must control whether the page is clear to users, Google, crawlers, and AI search systems.
+
+### design-qa
+
+Use for:
+
+, visual quality checks  
+, premium feel  
+, layout consistency  
+, typography review  
+, spacing review  
+, mobile visual QA  
+, anti generic checks  
+, final polish  
+, design defects
+
+Design QA must challenge anything that feels template based, generic, cramped, visually weak, or not aligned with Flammin Studio.
+
+### motion-gsap
+
+Use for:
+
+, motion planning  
+, reveal behavior  
+, scroll effects  
+, CTA micro interactions  
+, premium hover behavior  
+, GSAP decisions
+
+Motion GSAP must only be used when motion improves attention, clarity, trust, or conversion.
+
+Do not use GSAP unless the interaction earns it.
 
 ## Core Objective
 
@@ -56,7 +156,7 @@ The positioning must feel:
 , business oriented  
 , premium  
 , technically capable  
-, design mature  
+, design mature
 
 Avoid weak positioning such as:
 
@@ -64,7 +164,7 @@ Avoid weak positioning such as:
 , we build beautiful websites  
 , creative solutions for modern brands  
 , design that inspires  
-, your digital partner  
+, your digital partner
 
 Use outcome based language instead:
 
@@ -75,7 +175,42 @@ Use outcome based language instead:
 , high performance landing pages  
 , analytics ready growth systems  
 , investor ready digital presence  
-, campaign ready web infrastructure  
+, campaign ready web infrastructure
+
+## Locked Decisions
+
+Primary CTA:
+
+```txt
+Book a Conversion Audit
+```
+
+Homepage H1:
+
+```txt
+Websites and landing pages built to convert, not just exist.
+```
+
+Production domain:
+
+```txt
+https://flammin.studio/
+```
+
+Logo assets:
+
+```txt
+/Users/adamamar/Desktop/flammin-studio-v2/assets/logos/LOGO.svg
+/Users/adamamar/Desktop/flammin-studio-v2/assets/logos/LOGO.png
+```
+
+Work preview assets:
+
+```txt
+/Users/adamamar/Desktop/flammin-studio-v2/assets/images/work/rf-global-preview.webp
+/Users/adamamar/Desktop/flammin-studio-v2/assets/images/work/amuta-plus-preview.webp
+/Users/adamamar/Desktop/flammin-studio-v2/assets/images/work/rys-plast-preview.webp
+```
 
 ## Working Style
 
@@ -94,7 +229,7 @@ Use outcome based language instead:
 , Keep files organized  
 , Comment only when useful  
 , Avoid overengineering  
-, Test responsive behavior conceptually before finalizing  
+, Test responsive behavior conceptually before finalizing
 
 ## Stack
 
@@ -108,7 +243,7 @@ Use:
 , EmailJS  
 , Google Tag Manager  
 , Google Analytics 4  
-, Google Search Console  
+, Google Search Console
 
 Do not use:
 
@@ -119,7 +254,7 @@ Do not use:
 , heavy animation libraries  
 , CMS logic  
 , backend logic  
-, database logic  
+, database logic
 
 Only use complex architecture if explicitly requested.
 
@@ -138,7 +273,7 @@ The website must feel:
 , futuristic but mature  
 , founder facing  
 , conversion focused  
-, visually distinct  
+, visually distinct
 
 The visual system should have:
 
@@ -152,7 +287,7 @@ The visual system should have:
 , intentional asymmetry where useful  
 , strong above the fold impact  
 , high trust sections  
-, clean mobile experience  
+, clean mobile experience
 
 Avoid:
 
@@ -166,7 +301,7 @@ Avoid:
 , decorative sections without strategic purpose  
 , generic startup illustrations  
 , fake dashboard visuals unless strategically justified  
-, overdesigned sections that hurt clarity  
+, overdesigned sections that hurt clarity
 
 ## Brand Direction
 
@@ -176,14 +311,14 @@ Avoid:
 , Sharp  
 , Strategic  
 , Founder facing  
-, Conversion focused  
+, Conversion focused
 
 ## Brand Colors
 
 , Primary accent: #D84040  
 , Deep red: #8E1616  
 , Dark base: #1D1616  
-, Light text: #EEEEEE  
+, Light text: #EEEEEE
 
 Use the red accent with restraint. It should feel like a signal, not decoration.
 
@@ -191,7 +326,7 @@ Use the red accent with restraint. It should feel like a signal, not decoration.
 
 , Main typography: Space Grotesk  
 , Accent typography: Orbitron or Electrolize  
-, Do not overuse futuristic fonts  
+, Do not overuse futuristic fonts
 
 Typography must feel sharp, readable, premium, and controlled.
 
@@ -210,7 +345,7 @@ Every page must have:
 , conversion focused layout  
 , fast path to inquiry  
 , trust building proof  
-, mobile first structure  
+, mobile first structure
 
 Every section must answer at least one of these:
 
@@ -218,7 +353,7 @@ Every section must answer at least one of these:
 , Why should the visitor trust it?  
 , How does Flammin solve the problem?  
 , What should the visitor do next?  
-, What business outcome does this support?  
+, What business outcome does this support?
 
 Every section must support at least one of these goals:
 
@@ -228,7 +363,7 @@ Every section must support at least one of these goals:
 , Prove execution quality  
 , Move the visitor toward an inquiry  
 , Support SEO/GEO/AEO discoverability  
-, Support analytics and conversion tracking  
+, Support analytics and conversion tracking
 
 Avoid sections that exist only to look cool.
 
@@ -236,18 +371,17 @@ Avoid sections that exist only to look cool.
 
 Use one clear primary CTA across the site.
 
-Primary CTA direction:
+Primary CTA:
 
-, Book a Conversion Audit  
-, Request a Website Audit  
-, Start a Project  
-, Get a Website Review  
+```txt
+Book a Conversion Audit
+```
 
-Secondary CTA direction:
+Secondary CTA:
 
-, View Selected Work  
-, See the Process  
-, Explore Services  
+```txt
+View Selected Work
+```
 
 Do not overload the page with too many CTA types.
 
@@ -267,7 +401,7 @@ Each CTA should have a clear user intent and tracking hook.
 , Clear section boundaries  
 , Fast scanning experience  
 , Strong above the fold clarity  
-, No hidden critical information  
+, No hidden critical information
 
 ## Motion Direction
 
@@ -282,7 +416,7 @@ Allowed motion:
 , Scroll based storytelling where useful  
 , Case study card interactions  
 , Premium menu transitions  
-, Light GSAP usage only when it improves the experience  
+, Light GSAP usage only when it improves the experience
 
 Avoid:
 
@@ -293,7 +427,7 @@ Avoid:
 , Template like animation presets  
 , Animating every element for no reason  
 , Motion that hurts accessibility  
-, Motion that weakens readability  
+, Motion that weakens readability
 
 Motion must feel intentional, premium, and controlled.
 
@@ -317,7 +451,7 @@ Core component types may include:
 , Insight card  
 , FAQ item  
 , Contact form  
-, Footer  
+, Footer
 
 Components should be:
 
@@ -326,7 +460,7 @@ Components should be:
 , responsive  
 , accessible  
 , visually aligned  
-, easy to maintain  
+, easy to maintain
 
 Do not create one off messy components unless the design requires a specific high value moment.
 
@@ -340,7 +474,7 @@ Copy should be:
 , founder facing  
 , conversion focused  
 , confident  
-, specific  
+, specific
 
 Avoid:
 
@@ -350,7 +484,7 @@ Avoid:
 , fake metrics  
 , generic slogans  
 , long paragraphs  
-, buzzword stacking  
+, buzzword stacking
 
 Preferred copy style:
 
@@ -359,7 +493,7 @@ Preferred copy style:
 , strong section headers  
 , practical service descriptions  
 , business outcome framing  
-, proof based language  
+, proof based language
 
 ## SEO, GEO, and AEO Rules
 
@@ -377,7 +511,7 @@ Use:
 , clear service language  
 , image alt text  
 , fast loading assets  
-, clean semantic HTML  
+, clean semantic HTML
 
 Do not sacrifice clarity for cleverness.
 
@@ -387,7 +521,7 @@ The site should be understandable to:
 , Google  
 , AI search systems  
 , crawlers  
-, screen readers  
+, screen readers
 
 ## Analytics Rules
 
@@ -405,7 +539,7 @@ Plan for tracking:
 , email clicks  
 , social clicks  
 , scroll depth  
-, outbound link clicks  
+, outbound link clicks
 
 Use GTM friendly event names and clean data attributes where useful.
 
@@ -422,7 +556,7 @@ Use:
 , descriptive labels  
 , proper button and link usage  
 , meaningful alt text  
-, reduced motion considerations where possible  
+, reduced motion considerations where possible
 
 Do not make accessibility an afterthought.
 
@@ -440,7 +574,7 @@ Prioritize:
 , controlled JavaScript  
 , fast rendering  
 , low layout shift  
-, responsive image handling  
+, responsive image handling
 
 Do not add visual effects that damage load speed or interaction quality.
 
@@ -457,7 +591,30 @@ When editing code:
 , Do not modify unrelated sections  
 , Keep naming clear  
 , Avoid unnecessary comments  
-, Comment only where logic needs explanation  
+, Comment only where logic needs explanation
+
+## QA Gate Before Final Answer
+
+Before saying a UI change is complete, Claude must apply:
+
+```txt
+frontend-ui checklist
+website-cro review
+seo-geo-aeo review if metadata, headings, copy, schema, or FAQ changed
+design-qa review
+motion-gsap review if motion changed
+```
+
+Claude must explicitly confirm:
+
+, hero hierarchy is readable  
+, selected work images are not distorted  
+, mobile has no horizontal overflow  
+, CTA hierarchy is clear  
+, semantic HTML is preserved  
+, focus states and labels are preserved  
+, no fake metrics were added  
+, no generic SaaS layout was introduced
 
 ## Output Rules
 
@@ -467,7 +624,7 @@ Responses and code changes must be:
 , structured  
 , implementation ready  
 , direct  
-, focused  
+, focused
 
 Avoid fluff explanations unless requested.
 
@@ -494,7 +651,7 @@ Push for:
 , sharp typography  
 , practical conversion logic  
 , mature visual rhythm  
-, founder level clarity  
+, founder level clarity
 
 If the output feels generic, revise internally before presenting it.
 
