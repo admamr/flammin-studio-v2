@@ -4,9 +4,10 @@
   'use strict';
 
   /* ---- Mobile menu ---- */
-  const header     = document.getElementById('site-header');
-  const toggle     = document.getElementById('menu-toggle');
-  const nav        = document.getElementById('main-nav');
+  const header    = document.getElementById('site-header');
+  const toggle    = document.getElementById('menu-toggle');
+  const nav       = document.getElementById('main-nav');
+  const closeBtn  = document.getElementById('nav-close-btn');
 
   function openMenu() {
     nav.classList.add('nav-open');
@@ -14,6 +15,7 @@
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Close menu');
     document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
   }
 
   function closeMenu() {
@@ -30,12 +32,12 @@
       isOpen ? closeMenu() : openMenu();
     });
 
-    /* Close when a nav link is tapped */
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
     nav.querySelectorAll('.nav-link').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
 
-    /* Close on Escape */
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('nav-open')) closeMenu();
     });
@@ -118,6 +120,18 @@
         form.reset();
       }
     });
+  }
+
+  /* ---- GSAP hero entrance ---- */
+  if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var heroTl = gsap.timeline({ defaults: { ease: 'power2.out', clearProps: 'all' } });
+    heroTl
+      .from('.hero .eyebrow',   { opacity: 0, y: 12, duration: 0.55 }, 0.1)
+      .from('.hero-headline',   { opacity: 0, y: 22, duration: 0.65 }, 0.28)
+      .from('.hero-sub',        { opacity: 0, y: 16, duration: 0.55 }, 0.52)
+      .from('.hero-ctas',       { opacity: 0, y: 12, duration: 0.5  }, 0.7)
+      .from('.hero-caps',       { opacity: 0, duration: 0.45         }, 0.88)
+      .from('.hero-visual',     { opacity: 0, x: 18, duration: 0.65  }, 0.55);
   }
 
 })();
