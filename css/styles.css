@@ -172,6 +172,19 @@ input, textarea, select { font-family: inherit; }
 }
 
 /* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: opacity var(--transition);
+}
+.logo:hover .logo-mark { opacity: 0.85; }
 .logo-wordmark {
   font-family: var(--font-main);
   font-size: 1.05rem;
@@ -181,6 +194,9 @@ input, textarea, select { font-family: inherit; }
   transition: color var(--transition);
 }
 .logo:hover .logo-wordmark { color: var(--color-red); }
+
+/* Footer logo mark is slightly larger */
+.site-footer .logo-mark { width: 32px; height: 32px; }
 
 /* Nav */
 .main-nav { display: none; }
