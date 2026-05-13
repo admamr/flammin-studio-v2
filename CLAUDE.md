@@ -41,11 +41,11 @@ Before major implementation, plan:
 Before building, editing, or polishing any UI, Claude must read and apply the relevant skill files from:
 
 ```txt
-/Users/adamamar/Desktop/flammin-studio-v2/skills/frontend-ui/
-/Users/adamamar/Desktop/flammin-studio-v2/skills/website-cro/
-/Users/adamamar/Desktop/flammin-studio-v2/skills/seo-geo-aeo/
-/Users/adamamar/Desktop/flammin-studio-v2/skills/design-qa/
-/Users/adamamar/Desktop/flammin-studio-v2/skills/motion-gsap/
+/Users/adamamar/Desktop/flammin-studio-v2/.claude/skills/frontend-ui/
+/Users/adamamar/Desktop/flammin-studio-v2/.claude/skills/website-cro/
+/Users/adamamar/Desktop/flammin-studio-v2/.claude/skills/seo-geo-aeo/
+/Users/adamamar/Desktop/flammin-studio-v2/.claude/skills/design-qa/
+/Users/adamamar/Desktop/flammin-studio-v2/.claude/skills/motion-gsap/
 ```
 
 Use the skills based on task type.
