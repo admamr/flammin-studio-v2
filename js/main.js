@@ -122,6 +122,28 @@
     });
   }
 
+  /* ---- Newsletter form ---- */
+  var nlForm = document.getElementById('newsletter-form');
+  if (nlForm) {
+    nlForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = nlForm.querySelector('.newsletter-input');
+      var msg   = document.getElementById('newsletter-msg');
+      var btn   = nlForm.querySelector('.newsletter-btn');
+      if (!input || !input.value.trim()) {
+        if (input) input.focus();
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Subscribed';
+      input.value = '';
+      if (msg) {
+        msg.hidden = false;
+        msg.textContent = 'You\'re in. Studio notes coming your way.';
+      }
+    });
+  }
+
   /* ---- GSAP hero entrance ---- */
   if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var heroTl = gsap.timeline({ defaults: { ease: 'power2.out', clearProps: 'all' } });
