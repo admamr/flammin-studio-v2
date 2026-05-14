@@ -246,6 +246,132 @@
     });
   }
 
+  /* ---- Floating lead magnet widget ---- */
+  (function () {
+    var widget    = document.getElementById('lm-widget');
+    var trigger   = document.getElementById('lm-trigger');
+    var panel     = document.getElementById('lm-panel');
+    var closeBtn  = document.getElementById('lm-close');
+    var form      = document.getElementById('lm-form');
+    var statusEl  = document.getElementById('lm-status');
+    var submitBtn = document.getElementById('lm-submit');
+
+    if (!widget || !trigger || !panel) return;
+
+    // EmailJS configuration — fill in once set up:
+    // var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+    // var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    // var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    // Intended recipient: flamminstudio@gmail.com (configure in EmailJS template)
+
+    function openPanel() {
+      widget.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+      if (closeBtn) setTimeout(function () { closeBtn.focus(); }, 50);
+    }
+
+    function closePanel() {
+      widget.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      trigger.focus();
+    }
+
+    trigger.addEventListener('click', function () {
+      widget.classList.contains('is-open') ? closePanel() : openPanel();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && widget.classList.contains('is-open')) closePanel();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (widget.classList.contains('is-open') && !widget.contains(e.target)) closePanel();
+    });
+
+    function showStatus(msg, type) {
+      if (!statusEl) return;
+      statusEl.textContent   = msg;
+      statusEl.className     = 'lm-form-status ' + (type === 'success' ? 'lm-status-success' : 'lm-status-error');
+      statusEl.hidden        = false;
+    }
+
+    if (form && submitBtn) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nameEl    = document.getElementById('lm-name');
+        var emailEl   = document.getElementById('lm-email');
+        var websiteEl = document.getElementById('lm-website');
+        var goalEl    = document.getElementById('lm-goal');
+        var typeEl    = document.getElementById('lm-type');
+
+        // Clear previous error states
+        [nameEl, emailEl, websiteEl].forEach(function (el) {
+          if (el) el.classList.remove('lm-error');
+        });
+        if (statusEl) statusEl.hidden = true;
+
+        // Validate required fields
+        var valid = true;
+        [nameEl, emailEl, websiteEl].forEach(function (el) {
+          if (!el || !el.value.trim()) {
+            if (el) el.classList.add('lm-error');
+            valid = false;
+          }
+        });
+
+        if (!valid) {
+          showStatus('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        // Loading state
+        submitBtn.disabled    = true;
+        submitBtn.textContent = 'Sending...';
+
+        var payload = {
+          source:             'floating_lead_magnet',
+          page_url:           window.location.href,
+          name:               nameEl    ? nameEl.value.trim()    : '',
+          email:              emailEl   ? emailEl.value.trim()   : '',
+          website_url:        websiteEl ? websiteEl.value.trim() : '',
+          improvement_goal:   goalEl    ? goalEl.value.trim()    : '',
+          request_type:       typeEl    ? typeEl.value           : '',
+          timestamp:          new Date().toISOString(),
+          intended_recipient: 'flamminstudio@gmail.com'
+        };
+
+        function onSuccess() {
+          submitBtn.disabled    = false;
+          submitBtn.textContent = 'Get the Audit Framework';
+          form.reset();
+          showStatus('Sent — check your inbox shortly.', 'success');
+        }
+
+        function onError() {
+          submitBtn.disabled    = false;
+          submitBtn.textContent = 'Get the Audit Framework';
+          showStatus('Something went wrong. Please try again or email flamminstudio@gmail.com.', 'error');
+        }
+
+        if (typeof emailjs !== 'undefined' &&
+            typeof EMAILJS_SERVICE_ID !== 'undefined' &&
+            typeof EMAILJS_TEMPLATE_ID !== 'undefined') {
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload)
+            .then(onSuccess)
+            .catch(onError);
+        } else {
+          // Dev placeholder — remove this block once EmailJS is configured
+          setTimeout(onSuccess, 700);
+        }
+      });
+    }
+  })();
+
   /* ---- GSAP hero entrance ---- */
   if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var heroTl = gsap.timeline({ defaults: { ease: 'power2.out', clearProps: 'all' } });

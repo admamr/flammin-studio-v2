@@ -1088,6 +1088,92 @@
       </div>
     </footer>
 
+    <!-- ===== FLOATING LEAD MAGNET WIDGET ===== -->
+    <div id="lm-widget" class="lm-widget">
+      <button
+        id="lm-trigger"
+        class="lm-trigger"
+        aria-label="Get the free 7-point website audit framework"
+        aria-expanded="false"
+        aria-controls="lm-panel"
+        data-event="lead_magnet_open"
+      >
+        <span class="lm-dot" aria-hidden="true"></span>
+        <span>Free Audit Framework</span>
+      </button>
+
+      <div
+        id="lm-panel"
+        class="lm-panel"
+        role="dialog"
+        aria-label="7-Point Website Conversion Audit Framework"
+        aria-hidden="true"
+      >
+        <div class="lm-panel-inner">
+          <button
+            id="lm-close"
+            class="lm-close"
+            aria-label="Close audit framework panel"
+            data-event="lead_magnet_close"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <p class="lm-eyebrow">Free Website Audit</p>
+          <h2 class="lm-title">Get the 7-Point Website Conversion Audit Framework</h2>
+          <p class="lm-desc">A practical framework to spot what is blocking trust, clarity, UX flow, SEO visibility, tracking, and lead generation before visitors ever contact you.</p>
+
+          <ol class="lm-points">
+            <li>First impression clarity</li>
+            <li>Offer positioning</li>
+            <li>CTA hierarchy</li>
+            <li>Mobile UX friction</li>
+            <li>Trust and proof gaps</li>
+            <li>SEO, GEO, AEO structure</li>
+            <li>Tracking and conversion visibility</li>
+          </ol>
+
+          <form id="lm-form" class="lm-form" novalidate>
+            <div class="lm-field">
+              <label for="lm-name">Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="lm-name" name="lm_name" autocomplete="given-name" required placeholder="Your name" />
+            </div>
+            <div class="lm-field">
+              <label for="lm-email">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="lm-email" name="lm_email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+            <div class="lm-field">
+              <label for="lm-website">Website URL <span aria-hidden="true">*</span></label>
+              <input type="url" id="lm-website" name="lm_website" autocomplete="url" required placeholder="https://yourwebsite.com" />
+            </div>
+            <div class="lm-field">
+              <label for="lm-goal">What are you trying to improve? <span class="lm-optional">(optional)</span></label>
+              <textarea id="lm-goal" name="lm_goal" rows="2" placeholder="More leads, better UX, SEO..."></textarea>
+            </div>
+            <div class="lm-field">
+              <label for="lm-type">Request type</label>
+              <select id="lm-type" name="lm_type">
+                <option value="framework">Send me the framework</option>
+                <option value="framework_review">Send the framework + review my website</option>
+              </select>
+            </div>
+
+            <div class="lm-form-status" id="lm-status" role="status" aria-live="polite" hidden></div>
+
+            <button type="submit" class="lm-submit" id="lm-submit" data-event="lead_magnet_submit">
+              Get the Audit Framework
+            </button>
+          </form>
+
+          <a href="./index.html#audit" class="lm-secondary-cta" data-event="lead_magnet_secondary_cta">
+            Book a Conversion Audit →
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="custom-cursor" aria-hidden="true"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

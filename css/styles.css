@@ -3172,3 +3172,341 @@ select {
 @media (min-width: 1024px) {
   .work-hero-headline { max-width: 11em; }
 }
+
+/* ====================================================
+   FLOATING LEAD MAGNET WIDGET
+   ==================================================== */
+
+.lm-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9998;
+}
+
+/* Trigger button */
+.lm-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(216, 64, 64, 0.3);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  white-space: nowrap;
+}
+.lm-trigger:hover {
+  background: #c03333;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(216, 64, 64, 0.45);
+}
+.lm-trigger:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+.lm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+  animation: lm-pulse 2.2s ease-in-out infinite;
+}
+@keyframes lm-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lm-dot { animation: none; }
+}
+
+/* Panel — absolutely positioned so it floats above the trigger without affecting its layout */
+.lm-panel {
+  position: absolute;
+  bottom: calc(100% + 0.625rem);
+  right: 0;
+  width: 420px;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 1px solid rgba(216, 64, 64, 0.3);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+  pointer-events: none;
+  transform-origin: bottom right;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+.lm-widget.is-open .lm-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
+}
+
+.lm-panel-inner {
+  padding: 1.375rem 1.5rem 1.25rem;
+  position: relative;
+}
+
+/* Close button */
+.lm-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.lm-close:hover {
+  color: var(--color-text);
+  border-color: rgba(238, 238, 238, 0.18);
+  background: rgba(238, 238, 238, 0.04);
+}
+.lm-close:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 2px;
+}
+
+/* Panel content */
+.lm-eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--color-red);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.lm-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text);
+  margin-bottom: 0.55rem;
+  padding-right: 2rem;
+}
+
+.lm-desc {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-bottom: 0.875rem;
+}
+
+/* Audit points list */
+.lm-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  counter-reset: lm-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.625rem 0;
+}
+.lm-points li {
+  counter-increment: lm-counter;
+  font-size: 0.74rem;
+  color: var(--color-muted);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.5;
+}
+.lm-points li::before {
+  content: counter(lm-counter);
+  position: absolute;
+  left: 0;
+  color: var(--color-red);
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-family: var(--font-accent);
+  top: 0.05em;
+}
+
+/* Form */
+.lm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.lm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+.lm-field label {
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: rgba(238, 238, 238, 0.6);
+  letter-spacing: 0.01em;
+}
+.lm-field label span[aria-hidden] {
+  color: var(--color-red);
+  margin-left: 1px;
+}
+.lm-optional {
+  font-weight: 400;
+  font-size: 0.67rem;
+  color: rgba(238, 238, 238, 0.35);
+}
+.lm-field input,
+.lm-field textarea,
+.lm-field select {
+  width: 100%;
+  padding: 0.48rem 0.625rem;
+  background: rgba(29, 22, 22, 0.75);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  transition: border-color var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.lm-field input::placeholder,
+.lm-field textarea::placeholder {
+  color: rgba(238, 238, 238, 0.2);
+}
+.lm-field input:focus,
+.lm-field textarea:focus,
+.lm-field select:focus {
+  outline: none;
+  border-color: rgba(216, 64, 64, 0.5);
+}
+.lm-field input.lm-error,
+.lm-field textarea.lm-error {
+  border-color: rgba(216, 64, 64, 0.7);
+}
+.lm-field textarea {
+  resize: vertical;
+  min-height: 50px;
+}
+.lm-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(238,238,238,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.625rem center;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+.lm-field select option {
+  background: #231b1b;
+  color: var(--color-text);
+}
+
+/* Status message */
+.lm-form-status {
+  font-size: 0.76rem;
+  line-height: 1.45;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.7rem;
+}
+.lm-form-status.lm-status-success {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+.lm-form-status.lm-status-error {
+  background: rgba(216, 64, 64, 0.08);
+  border: 1px solid rgba(216, 64, 64, 0.25);
+  color: #fca5a5;
+}
+
+/* Submit button */
+.lm-submit {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition);
+}
+.lm-submit:hover:not(:disabled) { background: #c03333; }
+.lm-submit:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+.lm-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Secondary CTA link */
+.lm-secondary-cta {
+  display: block;
+  text-align: center;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-decoration: none;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.7rem;
+  margin-top: 0.25rem;
+  transition: color var(--transition);
+}
+.lm-secondary-cta:hover { color: var(--color-text); }
+.lm-secondary-cta:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 2px;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .lm-widget {
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+  .lm-panel {
+    right: 0;
+    width: calc(100vw - 2rem);
+    max-height: calc(100svh - 6rem);
+  }
+  .lm-trigger {
+    font-size: 0.75rem;
+    padding: 0.55rem 0.875rem;
+  }
+  .lm-title { font-size: 0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lm-panel {
+    transition: opacity 0.1s ease, visibility 0s linear 0.1s;
+    transform: none !important;
+  }
+  .lm-widget.is-open .lm-panel {
+    transition: opacity 0.1s ease, visibility 0s linear 0s;
+  }
+}
