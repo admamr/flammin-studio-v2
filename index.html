@@ -76,7 +76,7 @@
 
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
+  <body data-page="home">
     <!-- ===== HEADER ===== -->
     <header class="site-header" id="site-header">
       <div class="container header-inner">
@@ -93,21 +93,22 @@
         </a>
 
         <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-          <button
-            class="nav-close-btn"
-            id="nav-close-btn"
-            aria-label="Close menu"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </button>
+          <div class="nav-panel-head">
+            <span class="nav-panel-label" aria-hidden="true">Menu</span>
+            <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
           <ul class="nav-list" role="list">
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#work" class="nav-link">Work</a></li>
-            <li><a href="#process" class="nav-link">Process</a></li>
-            <li><a href="#faq" class="nav-link">FAQ</a></li>
-            <li><a href="#audit" class="nav-link">Contact</a></li>
+            <li><a href="./services.html" class="nav-link" data-nav="services">Services</a></li>
+            <li><a href="#work" class="nav-link" data-nav="work">Work</a></li>
+            <li><a href="#audit" class="nav-link" data-nav="pricing">Pricing</a></li>
+            <li><a href="#audit" class="nav-link" data-nav="connect">Connect</a></li>
           </ul>
+          <div class="nav-panel-cta">
+            <a href="#audit" class="btn btn-primary" data-event="cta_click" data-location="mobile_menu" data-label="book_conversion_audit">Book a Conversion Audit</a>
+          </div>
         </nav>
 
         <div class="header-actions">
@@ -1028,28 +1029,27 @@
             <nav class="footer-col" aria-label="Services">
               <p class="footer-col-title">Services</p>
               <ul class="footer-col-list" role="list">
-                <li><a href="#services" class="footer-col-link">Conversion Landing Pages</a></li>
-                <li><a href="#services" class="footer-col-link">Premium Studio Websites</a></li>
-                <li><a href="#services" class="footer-col-link">Analytics and Tracking</a></li>
-                <li><a href="#services" class="footer-col-link">SEO / GEO / AEO</a></li>
+                <li><a href="./services.html#landing-pages" class="footer-col-link">Conversion Landing Pages</a></li>
+                <li><a href="./services.html#studio-websites" class="footer-col-link">Premium Studio Websites</a></li>
+                <li><a href="./services.html#analytics-systems" class="footer-col-link">Analytics and Tracking</a></li>
+                <li><a href="./services.html#capabilities" class="footer-col-link">SEO / GEO / AEO</a></li>
               </ul>
             </nav>
             <nav class="footer-col" aria-label="Studio">
               <p class="footer-col-title">Studio</p>
               <ul class="footer-col-list" role="list">
+                <li><a href="./services.html" class="footer-col-link">Services</a></li>
                 <li><a href="#work" class="footer-col-link">Work</a></li>
-                <li><a href="#process" class="footer-col-link">Process</a></li>
-                <li><a href="#audit" class="footer-col-link">About</a></li>
-                <li><a href="#audit" class="footer-col-link">Contact</a></li>
+                <li><a href="#audit" class="footer-col-link">Pricing</a></li>
+                <li><a href="#audit" class="footer-col-link">Connect</a></li>
               </ul>
             </nav>
             <nav class="footer-col" aria-label="Resources">
               <p class="footer-col-title">Resources</p>
               <ul class="footer-col-list" role="list">
                 <li><a href="#audit" class="footer-col-link">Website Audit</a></li>
-                <li><a href="#" class="footer-col-link">Insights</a></li>
-                <li><a href="#faq" class="footer-col-link">FAQ</a></li>
-                <li><a href="#" class="footer-col-link">Founder Notes</a></li>
+                <li><a href="#" class="footer-col-link footer-col-link--soon">Blog <span class="footer-soon" aria-label="coming soon">Soon</span></a></li>
+                <li><a href="#" class="footer-col-link footer-col-link--soon">Founder Notes <span class="footer-soon" aria-label="coming soon">Soon</span></a></li>
               </ul>
             </nav>
             <nav class="footer-col" aria-label="Legal">

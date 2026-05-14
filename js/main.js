@@ -14,7 +14,6 @@
     toggle.classList.add('menu-open');
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-label', 'Close menu');
-    document.body.style.overflow = 'hidden';
     if (closeBtn) closeBtn.focus();
   }
 
@@ -23,12 +22,11 @@
     toggle.classList.remove('menu-open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open menu');
-    document.body.style.overflow = '';
   }
 
   if (toggle && nav) {
     toggle.addEventListener('click', function () {
-      const isOpen = nav.classList.contains('nav-open');
+      var isOpen = nav.classList.contains('nav-open');
       isOpen ? closeMenu() : openMenu();
     });
 
@@ -40,6 +38,15 @@
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('nav-open')) closeMenu();
+    });
+
+    /* Close on click outside panel */
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('nav-open') &&
+          !nav.contains(e.target) &&
+          !toggle.contains(e.target)) {
+        closeMenu();
+      }
     });
   }
 
@@ -168,6 +175,40 @@
       var isInteractive = !!e.target.closest('a, button, input, textarea, select, [data-cursor]');
       cursor.classList.toggle('is-hovering', isInteractive);
     });
+  })();
+
+  /* ---- Active nav state ---- */
+  (function () {
+    var page = document.body.getAttribute('data-page');
+    var navLinks = document.querySelectorAll('[data-nav]');
+
+    function setActive(key) {
+      navLinks.forEach(function (link) {
+        link.classList.toggle('nav-active', link.getAttribute('data-nav') === key);
+      });
+    }
+
+    if (page === 'services') {
+      setActive('services');
+    } else if (page === 'home') {
+      /* Scroll-based section tracking */
+      var sectionMap = { services: 'services', work: 'work', audit: 'connect' };
+      var sectionIds = Object.keys(sectionMap);
+      var sectionEls = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+      if (sectionEls.length && 'IntersectionObserver' in window) {
+        var sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var navKey = sectionMap[entry.target.id] || entry.target.id;
+              setActive(navKey);
+            }
+          });
+        }, { threshold: 0.25, rootMargin: '-15% 0px -60% 0px' });
+
+        sectionEls.forEach(function (el) { sectionObserver.observe(el); });
+      }
+    }
   })();
 
   /* ---- GSAP hero entrance ---- */
