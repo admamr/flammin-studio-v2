@@ -2532,3 +2532,643 @@ select {
     display: none !important;
   }
 }
+
+/* ===========================================================
+   WORK PAGE
+   =========================================================== */
+
+/* ---- Work Hero ---- */
+.work-hero {
+  padding-top: clamp(6rem, 10vw, 8.5rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  min-height: clamp(460px, 55vh, 680px);
+}
+.work-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-base);
+  pointer-events: none;
+}
+.work-hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(216, 64, 64, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 64, 64, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.work-hero-bg::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  right: -8%;
+  width: 60%;
+  height: 90%;
+  background: radial-gradient(ellipse at top right, rgba(142, 22, 22, 0.22) 0%, transparent 60%);
+}
+.work-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .work-hero-inner { grid-template-columns: 48% 52%; gap: 3.5rem; }
+}
+.work-hero-content { display: flex; flex-direction: column; align-items: flex-start; }
+.work-hero-headline {
+  font-size: clamp(1.85rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+  max-width: 14em;
+}
+.work-hero-sub {
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  color: var(--color-muted);
+  max-width: 48ch;
+  margin-bottom: 2.25rem;
+  line-height: 1.75;
+}
+.work-hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; }
+
+/* ---- Shared browser bar (used in hero cockpit + project cards) ---- */
+.wpc-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+.wpc-dot-r, .wpc-dot-y, .wpc-dot-g {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.wpc-dot-r { background-color: #ff5f56; }
+.wpc-dot-y { background-color: #ffbd2e; }
+.wpc-dot-g { background-color: #27c93f; }
+.wpc-url-bar {
+  flex: 1;
+  height: 12px;
+  background-color: var(--color-base);
+  border-radius: 2px;
+  margin-left: 0.4rem;
+  opacity: 0.4;
+}
+
+/* ---- Hero cockpit — project cluster ---- */
+.work-hero-cockpit {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .work-hero-cockpit {
+    display: block;
+    position: relative;
+    height: 440px;
+  }
+}
+
+.whc-card {
+  position: absolute;
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.whc-main {
+  left: 0;
+  top: 8%;
+  width: 65%;
+  z-index: 2;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(238, 238, 238, 0.06),
+    0 0 40px rgba(216, 64, 64, 0.06);
+}
+.whc-secondary {
+  right: 0;
+  top: 0;
+  width: 40%;
+  z-index: 3;
+  transform: rotate(-2deg);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(238, 238, 238, 0.05),
+    0 0 20px rgba(216, 64, 64, 0.08);
+}
+.whc-tertiary {
+  right: 7%;
+  bottom: 2%;
+  width: 37%;
+  z-index: 1;
+  transform: rotate(1.5deg);
+  opacity: 0.72;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(238, 238, 238, 0.04);
+}
+.work-hero-cockpit:hover .whc-main    { transform: translateY(-4px); }
+.work-hero-cockpit:hover .whc-secondary { transform: rotate(-2deg) translateY(-3px); }
+.work-hero-cockpit:hover .whc-tertiary  { transform: rotate(1.5deg) translateY(2px); }
+
+.whc-screen {
+  overflow: hidden;
+  line-height: 0;
+}
+.whc-screen img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.85;
+}
+
+/* Red signal line */
+.whc-signal {
+  position: absolute;
+  right: 35%;
+  top: 18%;
+  width: 1px;
+  height: 58%;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-red) 35%, var(--color-red) 65%, transparent 100%);
+  opacity: 0.28;
+  z-index: 4;
+  pointer-events: none;
+}
+.whc-signal::before {
+  content: '';
+  position: absolute;
+  top: 35%;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-red);
+  opacity: 0.7;
+}
+
+/* ---- Work Filter Strip ---- */
+.work-filter-wrap {
+  padding-block: clamp(1.5rem, 2.5vw, 2rem);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+.work-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.work-filter-btn {
+  position: relative;
+  font-family: var(--font-accent);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  padding: 0.45rem 0.875rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+}
+.work-filter-btn:hover {
+  color: var(--color-text);
+  border-color: rgba(238, 238, 238, 0.2);
+  background-color: rgba(238, 238, 238, 0.03);
+}
+.work-filter-btn.filter-active {
+  color: var(--color-text);
+  border-color: var(--color-red);
+  background-color: rgba(216, 64, 64, 0.1);
+  padding-left: 1.3rem;
+}
+.work-filter-btn.filter-active::before {
+  content: '';
+  position: absolute;
+  left: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-red);
+}
+
+/* ---- Project Grid Section ---- */
+.work-projects-section {
+  padding-block: var(--section-y);
+}
+
+/* ---- wpc-img: shared image frame with browser bar ---- */
+.wpc-img {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-2);
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Screen area (image inside browser bar) */
+.wpc-screen {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+.wpc-screen img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center top;
+  transition: opacity var(--transition);
+}
+
+/* Status + feature badges — inside wpc-screen */
+.wpc-status {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  font-family: var(--font-accent);
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: rgba(216, 64, 64, 0.88);
+  backdrop-filter: blur(4px);
+  padding: 0.28rem 0.6rem;
+  border-radius: 2px;
+  z-index: 2;
+}
+.wpc-featured-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-accent);
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background-color: rgba(35, 27, 27, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--color-border);
+  padding: 0.28rem 0.55rem;
+  border-radius: 2px;
+}
+
+/* ---- Featured card ---- */
+.wpc--featured {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.wpc--featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-deep-red), var(--color-red), var(--color-deep-red));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+.wpc--featured:hover::before { transform: scaleX(1); }
+.wpc--featured:hover {
+  border-color: var(--color-border-red);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 32px rgba(216, 64, 64, 0.06);
+}
+@media (min-width: 900px) {
+  .wpc--featured { grid-template-columns: 56% 44%; }
+}
+
+.wpc--featured .wpc-img {
+  border-bottom: none;
+  border-right: 1px solid var(--color-border);
+  background-color: #0a0707;
+}
+@media (max-width: 899px) {
+  .wpc--featured .wpc-img { border-right: none; border-bottom: 1px solid var(--color-border); }
+}
+.wpc--featured .wpc-screen {
+  aspect-ratio: 16 / 9;
+}
+.wpc--featured .wpc-screen img {
+  object-fit: contain;
+  object-position: center top;
+  opacity: 0.95;
+  /* no scale on hover — contain keeps the full screenshot visible */
+}
+.wpc--featured:hover .wpc-screen img { opacity: 1; transform: none; }
+
+.wpc--featured .wpc-body {
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---- Regular project grid ---- */
+.wpc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 600px) {
+  .wpc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .wpc-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+}
+
+/* Regular card */
+.wpc {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.wpc::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-deep-red), var(--color-red), var(--color-deep-red));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 1;
+}
+.wpc:hover::before { transform: scaleX(1); }
+.wpc:hover {
+  border-color: var(--color-border-red);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(216, 64, 64, 0.07);
+}
+.wpc.is-hidden { display: none; }
+
+.wpc .wpc-img { background-color: #0a0707; }
+.wpc .wpc-screen {
+  aspect-ratio: 16 / 10;
+}
+.wpc .wpc-screen img {
+  object-fit: contain;
+  object-position: center top;
+  opacity: 0.92;
+}
+.wpc:hover .wpc-screen img { opacity: 1; transform: none; }
+
+/* Shared card body */
+.wpc-body { padding: clamp(1.25rem, 2.5vw, 1.75rem); flex: 1; display: flex; flex-direction: column; }
+
+.wpc-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+.wpc-num {
+  font-family: var(--font-accent);
+  font-size: 0.52rem;
+  color: var(--color-red);
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+.wpc-cat {
+  font-family: var(--font-accent);
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background-color: var(--color-base);
+  border: 1px solid var(--color-border);
+  padding: 0.28rem 0.6rem;
+  border-radius: 2px;
+}
+
+.wpc-name {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.wpc--featured .wpc-name { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+
+.wpc-function {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wpc-caps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.wpc-caps li {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.wpc:hover .wpc-caps li,
+.wpc--featured:hover .wpc-caps li {
+  border-color: rgba(238, 238, 238, 0.12);
+}
+
+.wpc-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  padding: 0.625rem 1.25rem;
+  margin-top: auto;
+}
+
+/* ---- Work Methodology ---- */
+.work-method-section {
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding-block: clamp(4rem, 7vw, 6rem);
+}
+.work-method-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 768px) {
+  .work-method-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+}
+.work-method-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-base);
+  transition: border-color var(--transition);
+}
+.work-method-item:hover { border-color: var(--color-border-red); }
+.work-method-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-red);
+  margin-bottom: 0.25rem;
+}
+.work-method-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+.work-method-desc {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* ---- Work page polish overrides ---- */
+
+/* Hero: cockpit background depth frame */
+.work-hero-cockpit::before {
+  content: '';
+  position: absolute;
+  inset: -5% -3% -8% -3%;
+  background: radial-gradient(ellipse at 60% 40%, rgba(142, 22, 22, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Cockpit hover parallax feel */
+.whc-card { will-change: transform; }
+
+/* Featured Work label */
+.wpc-featured-label {
+  font-family: var(--font-accent);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: 0.625rem;
+  opacity: 0.85;
+}
+
+/* Featured card: Visit Site CTA more prominent */
+.wpc--featured .wpc-link {
+  background-color: rgba(216, 64, 64, 0.06);
+  border-color: rgba(216, 64, 64, 0.3);
+  color: var(--color-text);
+  margin-top: 1.75rem;
+}
+.wpc--featured .wpc-link:hover {
+  background-color: rgba(216, 64, 64, 0.14);
+  border-color: var(--color-red);
+}
+
+/* Screenshot bottom gradient for visual depth */
+.wpc-screen::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(29, 22, 22, 0.32), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grid gap upgrade */
+@media (min-width: 1024px) {
+  .wpc-grid { gap: 2rem; }
+}
+
+/* Methodology: left-border signal */
+.work-method-item {
+  border-left: 2px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  transition: border-left-color 0.25s ease, border-color var(--transition), box-shadow var(--transition);
+}
+.work-method-item:hover {
+  border-left-color: var(--color-red);
+  border-color: var(--color-border-red);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Final CTA: framed card */
+.work-page .final-cta-inner,
+[data-page="work"] .final-cta-inner {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: clamp(2.5rem, 5vw, 4rem);
+  background-color: rgba(29, 22, 22, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+[data-page="work"] .final-cta-inner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 64, 64, 0.45), transparent);
+  pointer-events: none;
+}
+[data-page="work"] .final-cta-inner .section-sub {
+  margin-bottom: 2.25rem;
+}
+
+/* Footer: slightly higher contrast on links */
+.footer-col-link {
+  color: rgba(238, 238, 238, 0.6);
+}
+
+/* Work hero headline — natural 3-line rhythm via max-width */
+@media (min-width: 1024px) {
+  .work-hero-headline { max-width: 11em; }
+}

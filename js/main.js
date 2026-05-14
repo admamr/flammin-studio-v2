@@ -190,6 +190,8 @@
 
     if (page === 'services') {
       setActive('services');
+    } else if (page === 'work') {
+      setActive('work');
     } else if (page === 'home') {
       /* Scroll-based section tracking */
       var sectionMap = { services: 'services', work: 'work', audit: 'connect' };
@@ -210,6 +212,39 @@
       }
     }
   })();
+
+  /* ---- Work page: project filter ---- */
+  if (document.body.getAttribute('data-page') === 'work') {
+    var filterBtns = document.querySelectorAll('.work-filter-btn');
+    var projectCards = document.querySelectorAll('#wpc-grid .wpc, .wpc--featured');
+
+    /* Set initial aria-pressed state */
+    filterBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.classList.contains('filter-active') ? 'true' : 'false');
+    });
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach(function (b) {
+          b.classList.remove('filter-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('filter-active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        projectCards.forEach(function (card) {
+          var cats = (card.getAttribute('data-category') || '').split(' ');
+          if (filter === 'all' || cats.indexOf(filter) !== -1) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  }
 
   /* ---- GSAP hero entrance ---- */
   if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
