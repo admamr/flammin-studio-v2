@@ -85,13 +85,13 @@
           other.setAttribute('aria-expanded', 'false');
           var otherId = other.getAttribute('aria-controls');
           var otherAnswer = document.getElementById(otherId);
-          if (otherAnswer) otherAnswer.hidden = true;
+          if (otherAnswer) otherAnswer.classList.remove('faq-open');
         }
       });
 
       /* Toggle this one */
       btn.setAttribute('aria-expanded', String(!expanded));
-      if (answer) answer.hidden = expanded;
+      if (answer) answer.classList.toggle('faq-open', !expanded);
     });
   });
 
@@ -143,6 +143,32 @@
       }
     });
   }
+
+  /* ---- Custom cursor ---- */
+  (function () {
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!finePointer.matches || reducedMotion.matches) return;
+
+    var cursor = document.querySelector('.custom-cursor');
+    if (!cursor) return;
+
+    document.addEventListener('mousemove', function (e) {
+      cursor.style.transform = 'translate3d(calc(' + e.clientX + 'px - 50%), calc(' + e.clientY + 'px - 50%), 0)';
+      if (!cursor.classList.contains('cursor-active')) {
+        cursor.classList.add('cursor-active');
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+      cursor.classList.remove('cursor-active');
+    });
+
+    document.addEventListener('mouseover', function (e) {
+      var isInteractive = !!e.target.closest('a, button, input, textarea, select, [data-cursor]');
+      cursor.classList.toggle('is-hovering', isInteractive);
+    });
+  })();
 
   /* ---- GSAP hero entrance ---- */
   if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
