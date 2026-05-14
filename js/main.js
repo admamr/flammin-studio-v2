@@ -192,6 +192,8 @@
       setActive('services');
     } else if (page === 'work') {
       setActive('work');
+    } else if (page === 'pricing') {
+      setActive('pricing');
     } else if (page === 'home') {
       /* Scroll-based section tracking */
       var sectionMap = { services: 'services', work: 'work', audit: 'connect' };
@@ -280,6 +282,12 @@
 
     trigger.addEventListener('click', function () {
       widget.classList.contains('is-open') ? closePanel() : openPanel();
+    });
+
+    /* Allow any [data-lm-open] element on the page to open the panel */
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-lm-open]');
+      if (opener && opener !== trigger) openPanel();
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closePanel);
